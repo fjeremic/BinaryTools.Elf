@@ -40,6 +40,9 @@
     <None Update="Binaries\helloworld32le">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Binaries\helloworld64be">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Binaries\helloworld64le">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
