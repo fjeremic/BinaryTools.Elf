@@ -85,5 +85,15 @@ namespace BinaryTools.Elf.Tests
 
             Assert.Equal(0U, elfFile.Header.Flags);
         }
+
+        [Fact]
+        public void CorrectType()
+        {
+            var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
+            var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
+            ElfFile elfFile = ElfFile.ReadElfFile(reader);
+
+            Assert.Equal(ElfType.Executable, elfFile.Header.Type);
+        }
     }
 }

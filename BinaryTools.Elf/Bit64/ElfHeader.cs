@@ -72,7 +72,7 @@ namespace BinaryTools.Elf.Bit64
             reader.BaseStream.Position += 1;
 
             // Represents Elf64_Ehdr.e_type
-            Type = reader.ReadUInt16();
+            Type = (ElfType)reader.ReadUInt16();
 
             // Represents Elf64_Ehdr.e_machine
             Machine = reader.ReadUInt16();

@@ -155,7 +155,7 @@ namespace BinaryTools.Elf
         /// <summary>
         /// Gets the ELF file type.
         /// </summary>
-        public UInt16 Type
+        public ElfType Type
         {
             get; protected set;
         }
