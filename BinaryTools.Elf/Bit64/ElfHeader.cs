@@ -45,7 +45,7 @@ namespace BinaryTools.Elf.Bit64
             reader.BaseStream.Position += 1;
 
             // Represents Elf64_Ehdr.e_ident[7]
-            OSABI = reader.ReadByte();
+            OSABI = (ElfOSABI)reader.ReadByte();
 
             // Represents Elf64_Ehdr.e_ident[8]
             OSABIVersion = reader.ReadByte();

@@ -55,5 +55,15 @@ namespace BinaryTools.Elf.Tests
 
             Assert.Equal(ElfHeader.ELFDATA2MSB, elfFile.Header.Data);
         }
+
+        [Fact]
+        public void CorrectOSABI()
+        {
+            var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
+            var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
+            ElfFile elfFile = ElfFile.ReadElfFile(reader);
+
+            Assert.Equal(ElfOSABI.None, elfFile.Header.OSABI);
+        }
     }
 }

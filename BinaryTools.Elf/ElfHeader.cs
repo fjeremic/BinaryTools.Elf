@@ -131,7 +131,7 @@ namespace BinaryTools.Elf
         /// <summary>
         /// Gets the ELF file Operating System (OS) Application Binary Interface (ABI).
         /// </summary>
-        public Byte OSABI
+        public ElfOSABI OSABI
         {
             get; protected set;
         }
