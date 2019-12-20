@@ -75,7 +75,7 @@ namespace BinaryTools.Elf.Bit32
             Type = (ElfType)reader.ReadUInt16();
 
             // Represents Elf32_Ehdr.e_machine
-            Machine = reader.ReadUInt16();
+            Machine = (ElfMachine)reader.ReadUInt16();
 
             // Represents Elf32_Ehdr.e_version
             Version = reader.ReadUInt32();

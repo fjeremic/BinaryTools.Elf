@@ -171,7 +171,7 @@ namespace BinaryTools.Elf
         /// <summary>
         /// Gets the ELF file Instruction Set Architecture (ISA).
         /// </summary>
-        public UInt16 Machine
+        public ElfMachine Machine
         {
             get; protected set;
         }

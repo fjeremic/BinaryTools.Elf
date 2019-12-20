@@ -95,5 +95,35 @@ namespace BinaryTools.Elf.Tests
 
             Assert.Equal(ElfType.Executable, elfFile.Header.Type);
         }
+
+        [Fact]
+        public void CorrectMachineX8664()
+        {
+            var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
+            var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
+            ElfFile elfFile = ElfFile.ReadElfFile(reader);
+
+            Assert.Equal(ElfMachine.X8664, elfFile.Header.Machine);
+        }
+
+        [Fact]
+        public void CorrectMachineI386()
+        {
+            var stream = new FileStream("Binaries/helloworld32le", FileMode.Open, FileAccess.Read);
+            var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
+            ElfFile elfFile = ElfFile.ReadElfFile(reader);
+
+            Assert.Equal(ElfMachine.I386, elfFile.Header.Machine);
+        }
+
+        [Fact]
+        public void CorrectMachineS390()
+        {
+            var stream = new FileStream("Binaries/helloworld64be", FileMode.Open, FileAccess.Read);
+            var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
+            ElfFile elfFile = ElfFile.ReadElfFile(reader);
+
+            Assert.Equal(ElfMachine.S390, elfFile.Header.Machine);
+        }
     }
 }
