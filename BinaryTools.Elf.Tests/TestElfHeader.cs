@@ -125,5 +125,15 @@ namespace BinaryTools.Elf.Tests
 
             Assert.Equal(ElfMachine.S390, elfFile.Header.Machine);
         }
+
+        [Fact]
+        public void CorrectVersion()
+        {
+            var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
+            var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
+            ElfFile elfFile = ElfFile.ReadElfFile(reader);
+
+            Assert.Equal(1U, elfFile.Header.Version);
+        }
     }
 }
