@@ -81,7 +81,7 @@ namespace BinaryTools.Elf
             // Initialize all segments
             for (var i = 0; i < header.SectionHeaderEntryCount; ++i)
             {
-                ElfSection section = null;
+                ElfSection section;
 
                 switch (header.Class)
                 {
@@ -108,7 +108,7 @@ namespace BinaryTools.Elf
 
             UInt16 strindex = header.StringSectionIndex;
 
-            if (strindex != ElfSection.SHN_UNDEF)
+            if (strindex != (UInt16)ElfSectionType.Null)
             {
                 // Initialize section names
                 for (var i = 0; i < header.SectionHeaderEntryCount; i++)

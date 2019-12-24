@@ -27,10 +27,10 @@ namespace BinaryTools.Elf.Bit32
             NameOffset = reader.ReadUInt32();
 
             // Represents Elf32_Shdr.sh_type
-            Type = reader.ReadUInt32();
+            Type = (ElfSectionType)reader.ReadUInt32();
 
             // Represents Elf32_Shdr.sh_flags
-            Flags = reader.ReadUInt32();
+            Flags = (ElfSectionFlags)reader.ReadUInt32();
 
             // Represents Elf32_Shdr.sh_addr
             Address = reader.ReadUInt32();
