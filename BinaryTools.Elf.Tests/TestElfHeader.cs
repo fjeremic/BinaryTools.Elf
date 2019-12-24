@@ -7,16 +7,6 @@ namespace BinaryTools.Elf.Tests
     public class TestElfHeader
     {
         [Fact]
-        public void CorrectEntryOffset()
-        {
-            var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
-            var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
-            ElfFile elfFile = ElfFile.ReadElfFile(reader);
-
-            Assert.Equal(0x00000000004019e0UL, elfFile.Header.EntryOffset);
-        }
-
-        [Fact]
         public void CorrectClass32()
         {
             var stream = new FileStream("Binaries/helloworld32le", FileMode.Open, FileAccess.Read);
@@ -134,6 +124,86 @@ namespace BinaryTools.Elf.Tests
             ElfFile elfFile = ElfFile.ReadElfFile(reader);
 
             Assert.Equal(1U, elfFile.Header.Version);
+        }
+
+        [Fact]
+        public void CorrectEntryOffset()
+        {
+            var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
+            var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
+            ElfFile elfFile = ElfFile.ReadElfFile(reader);
+
+            Assert.Equal(0x4019e0UL, elfFile.Header.EntryOffset);
+        }
+
+        [Fact]
+        public void CorrectSectionHeaderOffset()
+        {
+            var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
+            var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
+            ElfFile elfFile = ElfFile.ReadElfFile(reader);
+
+            Assert.Equal(37808UL, elfFile.Header.SectionHeaderOffset);
+        }
+
+        [Fact]
+        public void CorrectSectionHeaderSize()
+        {
+            var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
+            var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
+            ElfFile elfFile = ElfFile.ReadElfFile(reader);
+
+            Assert.Equal(64, elfFile.Header.SectionHeaderSize);
+        }
+
+        [Fact]
+        public void CorrectSectionHeaderEntryCount()
+        {
+            var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
+            var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
+            ElfFile elfFile = ElfFile.ReadElfFile(reader);
+
+            Assert.Equal(29, elfFile.Header.SectionHeaderEntryCount);
+        }
+
+        [Fact]
+        public void CorrectProgramHeaderOffset()
+        {
+            var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
+            var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
+            ElfFile elfFile = ElfFile.ReadElfFile(reader);
+
+            Assert.Equal(64UL, elfFile.Header.ProgramHeaderOffset);
+        }
+
+        [Fact]
+        public void CorrectProgramHeaderSize()
+        {
+            var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
+            var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
+            ElfFile elfFile = ElfFile.ReadElfFile(reader);
+
+            Assert.Equal(56, elfFile.Header.ProgramHeaderSize);
+        }
+
+        [Fact]
+        public void CorrectProgramHeaderEntryCount()
+        {
+            var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
+            var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
+            ElfFile elfFile = ElfFile.ReadElfFile(reader);
+
+            Assert.Equal(9, elfFile.Header.ProgramHeaderEntryCount);
+        }
+
+        [Fact]
+        public void CorrectStringSectionIndex()
+        {
+            var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
+            var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
+            ElfFile elfFile = ElfFile.ReadElfFile(reader);
+
+            Assert.Equal(28, elfFile.Header.StringSectionIndex);
         }
     }
 }
