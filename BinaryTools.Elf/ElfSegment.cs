@@ -118,7 +118,7 @@ namespace BinaryTools.Elf
         /// <summary>
         /// Gets the type of this segment.
         /// </summary>
-        public UInt32 Type
+        public ElfSegmentType Type
         {
             get; protected set;
         }

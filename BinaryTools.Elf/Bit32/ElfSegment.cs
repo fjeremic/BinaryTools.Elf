@@ -24,7 +24,7 @@ namespace BinaryTools.Elf.Bit32
             reader.BaseStream.Position = position;
 
             // Represents Elf32_Phdr.p_type
-            Type = reader.ReadUInt32();
+            Type = (ElfSegmentType)reader.ReadUInt32();
 
             // Represents Elf32_Phdr.p_offset
             Offset = reader.ReadUInt32();
