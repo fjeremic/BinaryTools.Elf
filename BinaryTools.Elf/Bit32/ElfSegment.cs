@@ -42,7 +42,7 @@ namespace BinaryTools.Elf.Bit32
             MemorySize = reader.ReadUInt32();
 
             // Represents Elf32_Phdr.p_flags
-            Flags = reader.ReadUInt32();
+            Flags = (ElfSegmentFlags)reader.ReadUInt32();
 
             // Represents Elf32_Phdr.p_align
             Alignment = reader.ReadUInt32();

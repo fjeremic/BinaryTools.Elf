@@ -27,7 +27,7 @@ namespace BinaryTools.Elf.Bit64
             Type = (ElfSegmentType)reader.ReadUInt32();
 
             // Represents Elf32_Phdr.p_flags
-            Flags = reader.ReadUInt32();
+            Flags = (ElfSegmentFlags)reader.ReadUInt32();
 
             // Represents Elf32_Phdr.p_offset
             Offset = reader.ReadUInt64();

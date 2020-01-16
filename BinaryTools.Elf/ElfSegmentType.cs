@@ -1,7 +1,7 @@
 ﻿namespace BinaryTools.Elf
 {
     /// <summary>
-    /// Enumerates the ELF section's contents and semantics.
+    /// Enumerates the ELF segment's contents and semantics.
     /// </summary>
     public enum ElfSegmentType : uint
     {

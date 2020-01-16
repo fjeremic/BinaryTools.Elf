@@ -126,7 +126,7 @@ namespace BinaryTools.Elf
         /// <summary>
         /// Gets the flags of this segment.
         /// </summary>
-        public UInt32 Flags
+        public ElfSegmentFlags Flags
         {
             get; protected set;
         }
