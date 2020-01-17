@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace BinaryTools.Elf
 {
@@ -56,7 +57,7 @@ namespace BinaryTools.Elf
         /// <param name="header">
         /// The ELF header used to extract the metadata about this program header table.
         /// </param>
-        internal ElfProgramHeaderTable(BinaryReader reader, ElfHeader header)
+        internal ElfProgramHeaderTable(BinaryReader reader, ElfHeader header, ElfSectionHeaderTable sections)
         {
             // Initialize all segments
             for (var i = 0; i < header.ProgramHeaderEntryCount; i++)
@@ -82,6 +83,8 @@ namespace BinaryTools.Elf
                             throw new InvalidOperationException("Unreachable case reached");
                         }
                 }
+
+                segment.Sections = sections.Where(s => s.Address >= segment.VirtualAddress && s.Address < segment.VirtualAddress + segment.MemorySize).ToList().AsReadOnly();
 
                 segments.Add(segment);
             }

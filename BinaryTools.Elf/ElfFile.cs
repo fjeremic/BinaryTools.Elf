@@ -127,8 +127,8 @@ namespace BinaryTools.Elf
                         }
                 }
 
-                var segments = new ElfProgramHeaderTable(reader, header);
                 var sections = new ElfSectionHeaderTable(reader, header);
+                var segments = new ElfProgramHeaderTable(reader, header, sections);
 
                 return new ElfFile(header, segments, sections);
             }

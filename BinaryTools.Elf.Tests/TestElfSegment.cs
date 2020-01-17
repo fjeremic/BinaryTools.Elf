@@ -136,5 +136,65 @@ namespace BinaryTools.Elf.Tests
             Assert.Equal(0x8UL, elfFile.Segments[4].Alignment);
             Assert.Equal(0x4UL, elfFile.Segments[5].Alignment);
         }
+
+        [Fact]
+        public void TestSectionToSegmentMapping()
+        {
+            var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
+            var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
+            ElfFile elfFile = ElfFile.ReadElfFile(reader);
+
+            Assert.Equal(0, elfFile.Segments[0].Sections.Count);
+            Assert.Equal(1, elfFile.Segments[1].Sections.Count);
+            Assert.Equal(elfFile.Sections[1], elfFile.Segments[1].Sections[0]);
+
+            Assert.Equal(18, elfFile.Segments[2].Sections.Count);
+            Assert.Equal(elfFile.Sections[1], elfFile.Segments[2].Sections[0]);
+            Assert.Equal(elfFile.Sections[2], elfFile.Segments[2].Sections[1]);
+            Assert.Equal(elfFile.Sections[3], elfFile.Segments[2].Sections[2]);
+            Assert.Equal(elfFile.Sections[4], elfFile.Segments[2].Sections[3]);
+            Assert.Equal(elfFile.Sections[5], elfFile.Segments[2].Sections[4]);
+            Assert.Equal(elfFile.Sections[6], elfFile.Segments[2].Sections[5]);
+            Assert.Equal(elfFile.Sections[7], elfFile.Segments[2].Sections[6]);
+            Assert.Equal(elfFile.Sections[8], elfFile.Segments[2].Sections[7]);
+            Assert.Equal(elfFile.Sections[9], elfFile.Segments[2].Sections[8]);
+            Assert.Equal(elfFile.Sections[10], elfFile.Segments[2].Sections[9]);
+            Assert.Equal(elfFile.Sections[11], elfFile.Segments[2].Sections[10]);
+            Assert.Equal(elfFile.Sections[12], elfFile.Segments[2].Sections[11]);
+            Assert.Equal(elfFile.Sections[13], elfFile.Segments[2].Sections[12]);
+            Assert.Equal(elfFile.Sections[14], elfFile.Segments[2].Sections[13]);
+            Assert.Equal(elfFile.Sections[15], elfFile.Segments[2].Sections[14]);
+            Assert.Equal(elfFile.Sections[16], elfFile.Segments[2].Sections[15]);
+            Assert.Equal(elfFile.Sections[17], elfFile.Segments[2].Sections[16]);
+            Assert.Equal(elfFile.Sections[18], elfFile.Segments[2].Sections[17]);
+
+            Assert.Equal(8, elfFile.Segments[3].Sections.Count);
+            Assert.Equal(elfFile.Sections[19], elfFile.Segments[3].Sections[0]);
+            Assert.Equal(elfFile.Sections[20], elfFile.Segments[3].Sections[1]);
+            Assert.Equal(elfFile.Sections[21], elfFile.Segments[3].Sections[2]);
+            Assert.Equal(elfFile.Sections[22], elfFile.Segments[3].Sections[3]);
+            Assert.Equal(elfFile.Sections[23], elfFile.Segments[3].Sections[4]);
+            Assert.Equal(elfFile.Sections[24], elfFile.Segments[3].Sections[5]);
+            Assert.Equal(elfFile.Sections[25], elfFile.Segments[3].Sections[6]);
+            Assert.Equal(elfFile.Sections[26], elfFile.Segments[3].Sections[7]);
+
+            Assert.Equal(1, elfFile.Segments[4].Sections.Count);
+            Assert.Equal(elfFile.Sections[22], elfFile.Segments[4].Sections[0]);
+
+            Assert.Equal(2, elfFile.Segments[5].Sections.Count);
+            Assert.Equal(elfFile.Sections[2], elfFile.Segments[5].Sections[0]);
+            Assert.Equal(elfFile.Sections[3], elfFile.Segments[5].Sections[1]);
+
+            Assert.Equal(1, elfFile.Segments[6].Sections.Count);
+            Assert.Equal(elfFile.Sections[17], elfFile.Segments[6].Sections[0]);
+
+            Assert.Equal(0, elfFile.Segments[7].Sections.Count);
+            Assert.Equal(5, elfFile.Segments[8].Sections.Count);
+            Assert.Equal(elfFile.Sections[19], elfFile.Segments[8].Sections[0]);
+            Assert.Equal(elfFile.Sections[20], elfFile.Segments[8].Sections[1]);
+            Assert.Equal(elfFile.Sections[21], elfFile.Segments[8].Sections[2]);
+            Assert.Equal(elfFile.Sections[22], elfFile.Segments[8].Sections[3]);
+            Assert.Equal(elfFile.Sections[23], elfFile.Segments[8].Sections[4]);
+        }
     }
 }

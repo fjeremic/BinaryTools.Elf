@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BinaryTools.Elf
 {
@@ -129,6 +130,14 @@ namespace BinaryTools.Elf
         public ElfSegmentFlags Flags
         {
             get; protected set;
+        }
+
+        /// <summary>
+        /// Gets a list of sections mapped to this segment.
+        /// </summary>
+        public IReadOnlyList<ElfSection> Sections
+        {
+            get; internal set;
         }
     }
 }
