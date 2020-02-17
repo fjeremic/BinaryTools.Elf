@@ -44,7 +44,7 @@ namespace BinaryTools.Elf
         /// </param>
         /// 
         /// <returns>
-        /// The ELF section with the specified name if it exists; <c>null</c> otherwise;
+        /// The ELF section with the specified name if it exists; <c>null</c> otherwise.
         /// </returns>
         public ElfSection this[String name]
         {
