@@ -110,21 +110,21 @@ namespace BinaryTools.Elf
                 switch (@class)
                 {
                     case ElfHeader.ELFCLASS32:
-                        {
-                            header = new Bit32.ElfHeader(reader, savedPosition);
-                        }
-                        break;
+                    {
+                        header = new Bit32.ElfHeader(reader, savedPosition);
+                    }
+                    break;
 
                     case ElfHeader.ELFCLASS64:
-                        {
-                            header = new Bit64.ElfHeader(reader, savedPosition);
-                        }
-                        break;
+                    {
+                        header = new Bit64.ElfHeader(reader, savedPosition);
+                    }
+                    break;
 
                     default:
-                        {
-                            throw new InvalidOperationException("Unreachable case reached");
-                        }
+                    {
+                        throw new InvalidOperationException("Unreachable case reached");
+                    }
                 }
 
                 var sections = new ElfSectionHeaderTable(reader, header);

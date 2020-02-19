@@ -67,21 +67,21 @@ namespace BinaryTools.Elf
                 switch (header.Class)
                 {
                     case ElfHeader.ELFCLASS32:
-                        {
-                            segment = new Bit32.ElfSegment(reader, (Int64)(header.ProgramHeaderOffset + (UInt64)(i * header.ProgramHeaderSize)));
-                        }
-                        break;
+                    {
+                        segment = new Bit32.ElfSegment(reader, (Int64)(header.ProgramHeaderOffset + (UInt64)(i * header.ProgramHeaderSize)));
+                    }
+                    break;
 
                     case ElfHeader.ELFCLASS64:
-                        {
-                            segment = new Bit64.ElfSegment(reader, (Int64)(header.ProgramHeaderOffset + (UInt64)(i * header.ProgramHeaderSize)));
-                        }
-                        break;
+                    {
+                        segment = new Bit64.ElfSegment(reader, (Int64)(header.ProgramHeaderOffset + (UInt64)(i * header.ProgramHeaderSize)));
+                    }
+                    break;
 
                     default:
-                        {
-                            throw new InvalidOperationException("Unreachable case reached");
-                        }
+                    {
+                        throw new InvalidOperationException("Unreachable case reached");
+                    }
                 }
 
                 segment.Sections = sections.Where(s => s.Address >= segment.VirtualAddress && s.Address < segment.VirtualAddress + segment.MemorySize).ToList().AsReadOnly();
