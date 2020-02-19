@@ -86,21 +86,39 @@ namespace BinaryTools.Elf
                 switch (header.Class)
                 {
                     case ElfHeader.ELFCLASS32:
+                    {
+                        section = new Bit32.ElfSection(reader, (Int64)(header.SectionHeaderOffset + (UInt64)(i * header.SectionHeaderSize)));
+
+                        switch (section.Type)
                         {
-                            section = new Bit32.ElfSection(reader, (Int64)(header.SectionHeaderOffset + (UInt64)(i * header.SectionHeaderSize)));
+                            case ElfSectionType.Dynamic:
+                            {
+                                section = new Bit32.ElfDynamicSection(reader, (Int64)(header.SectionHeaderOffset + (UInt64)(i * header.SectionHeaderSize)));
+                            }
+                            break;
                         }
-                        break;
+                    }
+                    break;
 
                     case ElfHeader.ELFCLASS64:
+                    {
+                        section = new Bit64.ElfSection(reader, (Int64)(header.SectionHeaderOffset + (UInt64)(i * header.SectionHeaderSize)));
+
+                        switch (section.Type)
                         {
-                            section = new Bit64.ElfSection(reader, (Int64)(header.SectionHeaderOffset + (UInt64)(i * header.SectionHeaderSize)));
+                            case ElfSectionType.Dynamic:
+                            {
+                                section = new Bit64.ElfDynamicSection(reader, (Int64)(header.SectionHeaderOffset + (UInt64)(i * header.SectionHeaderSize)));
+                            }
+                            break;
                         }
-                        break;
+                    }
+                    break;
 
                     default:
-                        {
-                            throw new InvalidOperationException("Unreachable case reached");
-                        }
+                    {
+                        throw new InvalidOperationException("Unreachable case reached");
+                    }
                 }
 
                 sections.Add(section);
@@ -114,6 +132,32 @@ namespace BinaryTools.Elf
                 for (var i = 0; i < header.SectionHeaderEntryCount; i++)
                 {
                     sections[i].Name = reader.ReadELFString(this[strindex], this[i].NameOffset);
+                }
+            }
+
+            // Parse all dynamic entries names now that we have all sections initalized
+            foreach (ElfDynamicSection dynamicSection in sections.OfType<ElfDynamicSection>())
+            {
+                ElfDynamicEntry strTab = dynamicSection.FirstOrDefault(e => e.Tag == ElfDynamicArrayTag.StrTab);
+
+                if (strTab != null)
+                {
+                    ElfSection dynStr = sections.First(s => s.Address == strTab.Value);
+
+                    foreach (ElfDynamicEntry entry in dynamicSection)
+                    {
+                        switch (entry.Tag)
+                        {
+                            case ElfDynamicArrayTag.Needed:
+                            case ElfDynamicArrayTag.SOName:
+                            case ElfDynamicArrayTag.RPath:
+                            case ElfDynamicArrayTag.RunPath:
+                            {
+                                entry.Name = reader.ReadELFString(dynStr, entry.Value);
+                            }
+                            break;
+                        }
+                    }
                 }
             }
         }

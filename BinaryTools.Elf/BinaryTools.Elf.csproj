@@ -5,8 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Bit32\" />
-    <Folder Include="Bit64\" />
     <Folder Include="Io\" />
   </ItemGroup>
 
