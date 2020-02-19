@@ -11,7 +11,7 @@ namespace BinaryTools.Elf
         /// <summary>
         /// The section contains no flags.
         /// </summary>
-        None  = 0x0,
+        None = 0x0,
 
         /// <summary>
         /// The section contains data that should be writable during process execution.
