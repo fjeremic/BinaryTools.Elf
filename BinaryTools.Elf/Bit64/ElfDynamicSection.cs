@@ -53,7 +53,7 @@ namespace BinaryTools.Elf.Bit64
             // Initialize all dynamic entries
             for (UInt64 i = 0; i < Size / EntrySize; i++)
             {
-                ElfDynamicEntry entry = new ElfDynamicEntry(reader, (Int64)(Offset + i * EntrySize));
+                var entry = new ElfDynamicEntry(reader, (Int64)(Offset + i * EntrySize));
 
                 entries.Add(entry);
 
