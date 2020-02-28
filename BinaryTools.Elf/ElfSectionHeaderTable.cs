@@ -96,6 +96,25 @@ namespace BinaryTools.Elf
                                 section = new Bit32.ElfDynamicSection(reader, (Int64)(header.SectionHeaderOffset + (UInt64)(i * header.SectionHeaderSize)));
                             }
                             break;
+
+                            case ElfSectionType.DynSym:
+                            {
+                                section = new Bit32.ElfSymbolTable(reader, (Int64)(header.SectionHeaderOffset + (UInt64)(i * header.SectionHeaderSize)));
+                            }
+                            break;
+
+                            case ElfSectionType.Rel:
+                            case ElfSectionType.RelA:
+                            {
+                                section = new Bit32.ElfRelocationSection(reader, (Int64)(header.SectionHeaderOffset + (UInt64)(i * header.SectionHeaderSize)));
+                            }
+                            break;
+
+                            case ElfSectionType.StrTab:
+                            {
+                                section = new Bit32.ElfStringTable(reader, (Int64)(header.SectionHeaderOffset + (UInt64)(i * header.SectionHeaderSize)));
+                            }
+                            break;
                         }
                     }
                     break;
@@ -111,6 +130,25 @@ namespace BinaryTools.Elf
                                 section = new Bit64.ElfDynamicSection(reader, (Int64)(header.SectionHeaderOffset + (UInt64)(i * header.SectionHeaderSize)));
                             }
                             break;
+
+                            case ElfSectionType.DynSym:
+                            {
+                                section = new Bit64.ElfSymbolTable(reader, (Int64)(header.SectionHeaderOffset + (UInt64)(i * header.SectionHeaderSize)));
+                            }
+                            break;
+
+                            case ElfSectionType.Rel:
+                            case ElfSectionType.RelA:
+                            {
+                                section = new Bit64.ElfRelocationSection(reader, (Int64)(header.SectionHeaderOffset + (UInt64)(i * header.SectionHeaderSize)));
+                            }
+                            break;
+
+                            case ElfSectionType.StrTab:
+                            {
+                                section = new Bit64.ElfStringTable(reader, (Int64)(header.SectionHeaderOffset + (UInt64)(i * header.SectionHeaderSize)));
+                            }
+                            break;
                         }
                     }
                     break;
@@ -124,14 +162,14 @@ namespace BinaryTools.Elf
                 sections.Add(section);
             }
 
-            UInt16 strindex = header.StringSectionIndex;
+            UInt16 shStrIndex = header.StringSectionIndex;
 
-            if (strindex != (UInt16)ElfSectionType.Null)
+            if (shStrIndex != (UInt16)ElfSectionType.Null)
             {
                 // Initialize section names
                 for (var i = 0; i < header.SectionHeaderEntryCount; i++)
                 {
-                    sections[i].Name = reader.ReadELFString(this[strindex], this[i].NameOffset);
+                    sections[i].Name = reader.ReadELFString(this[shStrIndex], this[i].NameOffset);
                 }
             }
 
@@ -142,7 +180,7 @@ namespace BinaryTools.Elf
 
                 if (strTab != null)
                 {
-                    ElfSection dynStr = sections.First(s => s.Address == strTab.Value);
+                    ElfSection dynSymSection = sections.First(s => s.Address == strTab.Value);
 
                     foreach (ElfDynamicEntry entry in dynamicSection)
                     {
@@ -153,11 +191,30 @@ namespace BinaryTools.Elf
                             case ElfDynamicArrayTag.RPath:
                             case ElfDynamicArrayTag.RunPath:
                             {
-                                entry.Name = reader.ReadELFString(dynStr, entry.Value);
+                                entry.Name = reader.ReadELFString(dynSymSection, entry.Value);
                             }
                             break;
                         }
                     }
+                }
+            }
+
+            var symTab = sections.OfType<ElfSymbolTable>().FirstOrDefault();
+            var dynStr = sections.OfType<ElfStringTable>().Where(s => s.Name == ".dynstr").FirstOrDefault();
+
+            // Parse all relocation entries symbols now that we have all sections initalized
+            foreach (ElfSymbolTableEntry entry in symTab)
+            {
+                entry.Name = reader.ReadELFString(dynStr, entry.NameIndex);
+            }
+
+            // Parse all relocation entries symbols now that we have all sections initalized
+            foreach (ElfRelocationSection relocationSection in sections.OfType<ElfRelocationSection>())
+            {
+                foreach (ElfRelocationEntry entry in relocationSection)
+                {
+                    entry.Symbol = symTab[entry.SymbolIndex].Name;
+                    entry.SymbolValue = symTab[entry.SymbolIndex].Value;
                 }
             }
         }
