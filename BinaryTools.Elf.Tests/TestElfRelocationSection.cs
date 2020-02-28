@@ -79,16 +79,16 @@ namespace BinaryTools.Elf.Tests
             Assert.IsAssignableFrom<ElfRelocationSection>(elfFile.Sections[10]);
 
             ElfRelocationSection relocationSection = elfFile.Sections[10] as ElfRelocationSection;
-            Assert.Equal(ElfRelocationSection.R_X86_64_JUMP_SLO, relocationSection[0].Type);
-            Assert.Equal(ElfRelocationSection.R_X86_64_JUMP_SLO, relocationSection[1].Type);
-            Assert.Equal(ElfRelocationSection.R_X86_64_JUMP_SLO, relocationSection[2].Type);
-            Assert.Equal(ElfRelocationSection.R_X86_64_JUMP_SLO, relocationSection[3].Type);
-            Assert.Equal(ElfRelocationSection.R_X86_64_JUMP_SLO, relocationSection[4].Type);
-            Assert.Equal(ElfRelocationSection.R_X86_64_JUMP_SLO, relocationSection[5].Type);
-            Assert.Equal(ElfRelocationSection.R_X86_64_JUMP_SLO, relocationSection[14].Type);
-            Assert.Equal(ElfRelocationSection.R_X86_64_JUMP_SLO, relocationSection[16].Type);
-            Assert.Equal(ElfRelocationSection.R_X86_64_JUMP_SLO, relocationSection[19].Type);
-            Assert.Equal(ElfRelocationSection.R_X86_64_JUMP_SLO, relocationSection[23].Type);
+            Assert.Equal(ElfRelocationSection.R_X86_64_JUMP_SLOT, relocationSection[0].Type);
+            Assert.Equal(ElfRelocationSection.R_X86_64_JUMP_SLOT, relocationSection[1].Type);
+            Assert.Equal(ElfRelocationSection.R_X86_64_JUMP_SLOT, relocationSection[2].Type);
+            Assert.Equal(ElfRelocationSection.R_X86_64_JUMP_SLOT, relocationSection[3].Type);
+            Assert.Equal(ElfRelocationSection.R_X86_64_JUMP_SLOT, relocationSection[4].Type);
+            Assert.Equal(ElfRelocationSection.R_X86_64_JUMP_SLOT, relocationSection[5].Type);
+            Assert.Equal(ElfRelocationSection.R_X86_64_JUMP_SLOT, relocationSection[14].Type);
+            Assert.Equal(ElfRelocationSection.R_X86_64_JUMP_SLOT, relocationSection[16].Type);
+            Assert.Equal(ElfRelocationSection.R_X86_64_JUMP_SLOT, relocationSection[19].Type);
+            Assert.Equal(ElfRelocationSection.R_X86_64_JUMP_SLOT, relocationSection[23].Type);
         }
 
         [Fact]
