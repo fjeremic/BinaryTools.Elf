@@ -64,7 +64,7 @@ namespace BinaryTools.Elf
         /// </remarks>
         public static String ReadELFString(this BinaryReader reader, ElfSection section, UInt64 offset)
         {
-            String value = null;
+            String value = String.Empty;
 
             if (section != null && offset < section.Size)
             {
