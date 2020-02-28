@@ -34,7 +34,7 @@ namespace BinaryTools.Elf
         }
 
         /// <summary>
-        /// gets the description of the note.
+        /// Gets the description of the note.
         /// </summary>
         public UInt64 DescriptionOffset
         {
