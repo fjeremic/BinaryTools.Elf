@@ -130,6 +130,8 @@ namespace BinaryTools.Elf
                 var sections = new ElfSectionHeaderTable(reader, header);
                 var segments = new ElfProgramHeaderTable(reader, header, sections);
 
+                reader.BaseStream.Position = savedPosition;
+
                 return new ElfFile(header, segments, sections);
             }
             catch (InaccessibleAddressException exception)
