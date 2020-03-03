@@ -1,5 +1,5 @@
 # BinaryTools.Elf
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/BinaryTools.Elf/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/fjeremic/BinaryTools.Elf/blob/master/LICENSE)
 
 A standalone library for endian-aware reading/parsing of ELF (Executable and Linkable Format) files built for ease of use and pretty-printing ELF file contents.
 
