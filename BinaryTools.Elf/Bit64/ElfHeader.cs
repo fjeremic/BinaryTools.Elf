@@ -36,10 +36,10 @@ namespace BinaryTools.Elf.Bit64
             reader.BaseStream.Position += 1;
 
             // Represents Elf64_Ehdr.e_ident[4]
-            Class = reader.ReadByte();
+            Class = (ElfClass)reader.ReadByte();
 
             // Represents Elf32_Ehdr.e_ident[5]
-            Data = reader.ReadByte();
+            Data = (ElfData)reader.ReadByte();
 
             // Represents Elf64_Ehdr.e_ident[6]
             reader.BaseStream.Position += 1;

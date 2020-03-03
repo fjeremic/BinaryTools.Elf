@@ -85,7 +85,7 @@ namespace BinaryTools.Elf
 
                 switch (header.Class)
                 {
-                    case ElfHeader.ELFCLASS32:
+                    case ElfClass.Elf32:
                     {
                         section = new Bit32.ElfSection(reader, (Int64)(header.SectionHeaderOffset + (UInt64)(i * header.SectionHeaderSize)));
 
@@ -119,7 +119,7 @@ namespace BinaryTools.Elf
                     }
                     break;
 
-                    case ElfHeader.ELFCLASS64:
+                    case ElfClass.Elf64:
                     {
                         section = new Bit64.ElfSection(reader, (Int64)(header.SectionHeaderOffset + (UInt64)(i * header.SectionHeaderSize)));
 

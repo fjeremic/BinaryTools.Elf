@@ -66,13 +66,13 @@ namespace BinaryTools.Elf
 
                 switch (header.Class)
                 {
-                    case ElfHeader.ELFCLASS32:
+                    case ElfClass.Elf32:
                     {
                         segment = new Bit32.ElfSegment(reader, (Int64)(header.ProgramHeaderOffset + (UInt64)(i * header.ProgramHeaderSize)));
                     }
                     break;
 
-                    case ElfHeader.ELFCLASS64:
+                    case ElfClass.Elf64:
                     {
                         segment = new Bit64.ElfSegment(reader, (Int64)(header.ProgramHeaderOffset + (UInt64)(i * header.ProgramHeaderSize)));
                     }
