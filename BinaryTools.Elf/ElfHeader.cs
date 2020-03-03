@@ -115,7 +115,7 @@ namespace BinaryTools.Elf
         /// <summary>
         /// Gets the ELF file bitness.
         /// </summary>
-        public Byte Class
+        public ElfClass Class
         {
             get; protected set;
         }
@@ -123,7 +123,7 @@ namespace BinaryTools.Elf
         /// <summary>
         /// Gets the ELF file endianness.
         /// </summary>
-        public Byte Data
+        public ElfData Data
         {
             get; protected set;
         }

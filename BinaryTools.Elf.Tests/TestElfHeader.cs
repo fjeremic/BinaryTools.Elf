@@ -13,7 +13,7 @@ namespace BinaryTools.Elf.Tests
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
             ElfFile elfFile = ElfFile.ReadElfFile(reader);
 
-            Assert.Equal(ElfHeader.ELFCLASS32, elfFile.Header.Class);
+            Assert.Equal(ElfClass.Elf32, elfFile.Header.Class);
         }
 
         [Fact]
@@ -23,7 +23,7 @@ namespace BinaryTools.Elf.Tests
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
             ElfFile elfFile = ElfFile.ReadElfFile(reader);
 
-            Assert.Equal(ElfHeader.ELFCLASS64, elfFile.Header.Class);
+            Assert.Equal(ElfClass.Elf64, elfFile.Header.Class);
         }
 
         [Fact]
@@ -33,7 +33,7 @@ namespace BinaryTools.Elf.Tests
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
             ElfFile elfFile = ElfFile.ReadElfFile(reader);
 
-            Assert.Equal(ElfHeader.ELFDATA2LSB, elfFile.Header.Data);
+            Assert.Equal(ElfData.Lsb, elfFile.Header.Data);
         }
 
         [Fact]
@@ -43,7 +43,7 @@ namespace BinaryTools.Elf.Tests
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
             ElfFile elfFile = ElfFile.ReadElfFile(reader);
 
-            Assert.Equal(ElfHeader.ELFDATA2MSB, elfFile.Header.Data);
+            Assert.Equal(ElfData.Msb, elfFile.Header.Data);
         }
 
         [Fact]
