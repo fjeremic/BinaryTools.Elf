@@ -8,7 +8,7 @@ namespace BinaryTools.Elf.Tests
     public class TestElfFile
     {
         [Fact]
-        public void FileExists()
+        public void TestFileExists()
         {
             var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -16,7 +16,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void ClosedStream()
+        public void TestClosedStream()
         {
             var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
             stream.Close();
@@ -26,7 +26,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void NativeEnidanness()
+        public void TestNativeEnidanness()
         {
             var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -34,7 +34,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void InvalidMagicBytes()
+        public void TestInvalidMagicBytes()
         {
             var stream = new FileStream("Binaries/invalidmagicbytes", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -44,7 +44,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void InvalidClass()
+        public void TestInvalidClass()
         {
             var stream = new FileStream("Binaries/invalidclass", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -54,7 +54,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void InvalidEndianness()
+        public void TestInvalidEndianness()
         {
             var stream = new FileStream("Binaries/invalidendianness", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
