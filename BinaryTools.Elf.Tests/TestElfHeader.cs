@@ -7,7 +7,7 @@ namespace BinaryTools.Elf.Tests
     public class TestElfHeader
     {
         [Fact]
-        public void CorrectClass32()
+        public void TestClass32()
         {
             var stream = new FileStream("Binaries/helloworld32le", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -17,7 +17,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void CorrectClass64()
+        public void TestClass64()
         {
             var stream = new FileStream("Binaries/helloworld64le", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -27,7 +27,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void CorrectEndiannessLE()
+        public void TestEndiannessLE()
         {
             var stream = new FileStream("Binaries/helloworld64le", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -37,7 +37,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void CorrectEndiannessBE()
+        public void TestEndiannessBE()
         {
             var stream = new FileStream("Binaries/helloworld64be", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -47,7 +47,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void CorrectOSABI()
+        public void TestOSABI()
         {
             var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -57,7 +57,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void CorrectOSABIVersion()
+        public void TestOSABIVersion()
         {
             var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -67,7 +67,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void CorrectFlags()
+        public void TestFlags()
         {
             var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -77,7 +77,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void CorrectType()
+        public void TestType()
         {
             var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -87,7 +87,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void CorrectMachineX8664()
+        public void TestMachineX8664()
         {
             var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -97,7 +97,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void CorrectMachineI386()
+        public void TestMachineI386()
         {
             var stream = new FileStream("Binaries/helloworld32le", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -107,7 +107,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void CorrectMachineS390()
+        public void TestMachineS390()
         {
             var stream = new FileStream("Binaries/helloworld64be", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -117,7 +117,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void CorrectVersion()
+        public void TestVersion()
         {
             var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -127,7 +127,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void CorrectEntryOffset()
+        public void TestEntryOffset()
         {
             var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -137,7 +137,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void CorrectSectionHeaderOffset()
+        public void TestSectionHeaderOffset()
         {
             var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -147,7 +147,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void CorrectSectionHeaderSize()
+        public void TestSectionHeaderSize()
         {
             var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -157,7 +157,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void CorrectSectionHeaderEntryCount()
+        public void TestSectionHeaderEntryCount()
         {
             var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -167,7 +167,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void CorrectProgramHeaderOffset()
+        public void TestProgramHeaderOffset()
         {
             var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -177,7 +177,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void CorrectProgramHeaderSize()
+        public void TestProgramHeaderSize()
         {
             var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -187,7 +187,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void CorrectProgramHeaderEntryCount()
+        public void TestProgramHeaderEntryCount()
         {
             var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
@@ -197,7 +197,7 @@ namespace BinaryTools.Elf.Tests
         }
 
         [Fact]
-        public void CorrectStringSectionIndex()
+        public void TestStringSectionIndex()
         {
             var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
