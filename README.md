@@ -5,7 +5,7 @@ A standalone library for endian-aware reading/parsing of ELF (Executable and Lin
 
 ## Installing / Getting started
 
-The best way to obtain the library is via the [BinaryTools.Elf NuGet package]():
+The best way to obtain the library is via the [BinaryTools.Elf NuGet package](https://www.nuget.org/packages/BinaryTools.Elf/):
  
 ```shell
 dotnet add package BinaryTools.Elf
