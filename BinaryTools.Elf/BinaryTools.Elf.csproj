@@ -11,7 +11,11 @@
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>ELF</PackageTags>
     <Version>0.1.0</Version>
-    <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      Release notes:
+      https://github.com/fjeremic/BinaryTools.Elf/releases
+    </PackageReleaseNotes>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
