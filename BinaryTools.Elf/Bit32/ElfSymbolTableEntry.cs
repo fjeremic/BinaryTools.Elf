@@ -1,22 +1,24 @@
-﻿using System;
-using System.IO;
-
-namespace BinaryTools.Elf.Bit32
+﻿namespace BinaryTools.Elf.Bit32
 {
+    using System.IO;
+
+    /// <summary>
+    /// Represents an ELF symbol table entry.
+    /// </summary>
     internal sealed class ElfSymbolTableEntry : Elf.ElfSymbolTableEntry
     {
         /// <summary>
-        /// Initializes a new instance of <see cref="ElfSymbolTableEntry"/> by extracting data from a <see cref="BinaryReader"/>.
+        /// Initializes a new instance of the <see cref="ElfSymbolTableEntry"/> class by extracting data from a <see cref="BinaryReader"/>.
         /// </summary>
-        /// 
+        ///
         /// <param name="reader">
         /// The reader used to extract the data needed to initialize this type.
         /// </param>
-        /// 
+        ///
         /// <param name="position">
         /// The position within the <paramref name="reader"/> base stream at which the entry begins.
         /// </param>
-        internal ElfSymbolTableEntry(BinaryReader reader, Int64 position)
+        internal ElfSymbolTableEntry(BinaryReader reader, long position)
         {
             reader.BaseStream.Position = position;
 
@@ -30,7 +32,7 @@ namespace BinaryTools.Elf.Bit32
             Size = reader.ReadUInt32();
 
             // Represents Elf32_Sym.st_info
-            Byte info = reader.ReadByte();
+            byte info = reader.ReadByte();
 
             // Represents ELF32_ST_BIND(i)
             Binding = (ElfSymbolBinding)(info >> 4);
@@ -44,7 +46,7 @@ namespace BinaryTools.Elf.Bit32
             // Represents Elf32_Sym.st_size
             ShIndex = reader.ReadUInt16();
 
-            Name = String.Empty;
+            Name = string.Empty;
         }
     }
 }

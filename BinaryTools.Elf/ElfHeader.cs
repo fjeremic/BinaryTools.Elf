@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BinaryTools.Elf
+﻿namespace BinaryTools.Elf
 {
     /// <summary>
     /// Represents an ELF header which contains metadata about the rest of the ELF file.
@@ -10,110 +8,113 @@ namespace BinaryTools.Elf
         /// <summary>
         /// Gets the index within the <c>e_ident</c> structure of the 1st ELF magic number.
         /// </summary>
-        public const UInt32 EI_MAG0 = 0;
+        public const uint EI_MAG0 = 0;
 
         /// <summary>
         /// Gets the index within the <c>e_ident</c> structure of the 2nd ELF magic number.
         /// </summary>
-        public const UInt32 EI_MAG1 = 1;
+        public const uint EI_MAG1 = 1;
 
         /// <summary>
         /// Gets the index within the <c>e_ident</c> structure of the 3rd ELF magic number.
         /// </summary>
-        public const UInt32 EI_MAG2 = 2;
+        public const uint EI_MAG2 = 2;
 
         /// <summary>
         /// Gets the index within the <c>e_ident</c> structure of the 4th ELF magic number.
         /// </summary>
-        public const UInt32 EI_MAG3 = 3;
+        public const uint EI_MAG3 = 3;
 
         /// <summary>
         /// Gets the index within the <c>e_ident</c> structure of class byte representing the bitness of this ELF file.
         /// </summary>
-        public const UInt32 EI_CLASS = 4;
+        public const uint EI_CLASS = 4;
 
         /// <summary>
         /// Gets the index within the <c>e_ident</c> structure of data byte representing the endianness of this ELF file.
         /// </summary>
-        public const UInt32 EI_DATA = 5;
+        public const uint EI_DATA = 5;
 
         /// <summary>
         /// Gets the index within the <c>e_ident</c> structure of version byte representing version this ELF file.
         /// </summary>
-        public const UInt32 EI_VERSION = 6;
+        public const uint EI_VERSION = 6;
 
         /// <summary>
         /// Gets the index within the <c>e_ident</c> structure of OS ABI byte.
         /// </summary>
-        public const UInt32 EI_OSABI = 7;
+        public const uint EI_OSABI = 7;
 
         /// <summary>
         /// Gets the index within the <c>e_ident</c> structure of OS ABI version byte.
         /// </summary>
-        public const UInt32 EI_OSABIV = 8;
+        public const uint EI_OSABIV = 8;
 
         /// <summary>
         /// Gets size in number of bytes of the <c>e_ident</c> structure.
         /// </summary>
-        public const UInt32 EI_NIDENT = 16;
+        public const uint EI_NIDENT = 16;
 
         /// <summary>
         /// Gets the value of the 1st ELF magic number.
         /// </summary>
-        public const Byte ELFMAG0 = 0x7F;
+        public const byte ELFMAG0 = 0x7F;
 
         /// <summary>
         /// Gets the value of the 2nd ELF magic number.
         /// </summary>
-        public const Byte ELFMAG1 = 0x45;
+        public const byte ELFMAG1 = 0x45;
 
         /// <summary>
         /// Gets the value of the 3rd ELF magic number.
         /// </summary>
-        public const Byte ELFMAG2 = 0x4C;
+        public const byte ELFMAG2 = 0x4C;
 
         /// <summary>
         /// Gets the value of the 4th ELF magic number.
         /// </summary>
-        public const Byte ELFMAG3 = 0x46;
+        public const byte ELFMAG3 = 0x46;
 
         /// <summary>
         /// Gets the value of an invalid ELF file bitness.
         /// </summary>
-        public const Byte ELFCLASSNONE = 0x00;
+        public const byte ELFCLASSNONE = 0x00;
 
         /// <summary>
         /// Gets the value of an ELF file with 32-bit objects.
         /// </summary>
-        public const Byte ELFCLASS32 = 0x01;
+        public const byte ELFCLASS32 = 0x01;
 
         /// <summary>
         /// Gets the value of an ELF file with 64-bit objects.
         /// </summary>
-        public const Byte ELFCLASS64 = 0x02;
+        public const byte ELFCLASS64 = 0x02;
 
         /// <summary>
         /// Gets the value of an invalid ELF endianness.
         /// </summary>
-        public const Byte ELFDATANONE = 0x00;
+        public const byte ELFDATANONE = 0x00;
 
         /// <summary>
         /// Gets the value of an little-endian (least significant byte first) ELF endianness.
         /// </summary>
-        public const Byte ELFDATA2LSB = 0x01;
+        public const byte ELFDATA2LSB = 0x01;
 
         /// <summary>
         /// Gets the value of an big-endian (most significant byte first) ELF endianness.
         /// </summary>
-        public const Byte ELFDATA2MSB = 0x02;
+        public const byte ELFDATA2MSB = 0x02;
 
-        public UInt16 Size
+        /// <summary>
+        /// Gets or sets the size of the ELF header.
+        /// </summary>
+        public ushort Size
         {
             get; protected set;
         }
 
         /// <summary>
-        /// Gets the ELF file bitness.
+        /// Gets or sets the ELF file bitness.
         /// </summary>
         public ElfClass Class
         {
@@ -121,7 +122,7 @@ namespace BinaryTools.Elf
         }
 
         /// <summary>
-        /// Gets the ELF file endianness.
+        /// Gets or sets the ELF file endianness.
         /// </summary>
         public ElfData Data
         {
@@ -129,7 +130,7 @@ namespace BinaryTools.Elf
         }
 
         /// <summary>
-        /// Gets the ELF file Operating System (OS) Application Binary Interface (ABI).
+        /// Gets or sets the ELF file Operating System (OS) Application Binary Interface (ABI).
         /// </summary>
         public ElfOSABI OSABI
         {
@@ -137,23 +138,23 @@ namespace BinaryTools.Elf
         }
 
         /// <summary>
-        /// Gets the ELF file Operating System (OS) Application Binary Interface (ABI) version.
+        /// Gets or sets the ELF file Operating System (OS) Application Binary Interface (ABI) version.
         /// </summary>
-        public Byte OSABIVersion
+        public byte OSABIVersion
         {
             get; protected set;
         }
 
         /// <summary>
-        /// Interpretation of this field depends on the target architecture.
+        /// Gets or sets interpretation of this field depends on the target architecture.
         /// </summary>
-        public UInt32 Flags
+        public uint Flags
         {
             get; protected set;
         }
 
         /// <summary>
-        /// Gets the ELF file type.
+        /// Gets or sets the ELF file type.
         /// </summary>
         public ElfType Type
         {
@@ -161,15 +162,15 @@ namespace BinaryTools.Elf
         }
 
         /// <summary>
-        /// Gets the ELF file version.
+        /// Gets or sets the ELF file version.
         /// </summary>
-        public UInt32 Version
+        public uint Version
         {
             get; protected set;
         }
 
         /// <summary>
-        /// Gets the ELF file Instruction Set Architecture (ISA).
+        /// Gets or sets the ELF file Instruction Set Architecture (ISA).
         /// </summary>
         public ElfMachine Machine
         {
@@ -177,65 +178,65 @@ namespace BinaryTools.Elf
         }
 
         /// <summary>
-        /// Gets memory address of the entry point from where the process starts executing.
+        /// Gets or sets memory address of the entry point from where the process starts executing.
         /// </summary>
-        public UInt64 EntryOffset
+        public ulong EntryOffset
         {
             get; protected set;
         }
 
         /// <summary>
-        /// Gets the offset in number of bytes to the start of the section header table.
+        /// Gets or sets the offset in number of bytes to the start of the section header table.
         /// </summary>
-        public UInt64 SectionHeaderOffset
+        public ulong SectionHeaderOffset
         {
             get; protected set;
         }
 
         /// <summary>
-        /// Gets the size in number of bytes of the section header table.
+        /// Gets or sets the size in number of bytes of the section header table.
         /// </summary>
-        public UInt16 SectionHeaderSize
+        public ushort SectionHeaderSize
         {
             get; protected set;
         }
 
         /// <summary>
-        /// Gets the number of sections in the section header table.
+        /// Gets or sets the number of sections in the section header table.
         /// </summary>
-        public UInt16 SectionHeaderEntryCount
+        public ushort SectionHeaderEntryCount
         {
             get; protected set;
         }
 
         /// <summary>
-        /// Gets the offset in number of bytes to the start of the program header table.
+        /// Gets or sets the offset in number of bytes to the start of the program header table.
         /// </summary>
-        public UInt64 ProgramHeaderOffset
+        public ulong ProgramHeaderOffset
         {
             get; protected set;
         }
 
         /// <summary>
-        /// Gets the size in number of bytes of the program header table.
+        /// Gets or sets the size in number of bytes of the program header table.
         /// </summary>
-        public UInt16 ProgramHeaderSize
+        public ushort ProgramHeaderSize
         {
             get; protected set;
         }
 
         /// <summary>
-        /// Gets the number of segments in the program header table.
+        /// Gets or sets the number of segments in the program header table.
         /// </summary>
-        public UInt16 ProgramHeaderEntryCount
+        public ushort ProgramHeaderEntryCount
         {
             get; protected set;
         }
 
         /// <summary>
-        /// Gets the index in the section header table that contains the section names.
+        /// Gets or sets the index in the section header table that contains the section names.
         /// </summary>
-        public UInt16 StringSectionIndex
+        public ushort StringSectionIndex
         {
             get; protected set;
         }

@@ -1,28 +1,30 @@
-﻿using System;
-
-namespace BinaryTools.Elf
+﻿namespace BinaryTools.Elf
 {
+    /// <summary>
+    /// Represents an ELF symbol table entry.
+    /// </summary>
     public abstract class ElfSymbolTableEntry
     {
         /// <summary>
         /// Gets the name of the symbol.
         /// </summary>
-        public String Name
+        public string Name
         {
             get; internal set;
         }
+
         /// <summary>
-        /// Gets an index into the object file's symbol string table, which holds the character representations of the symbol names.
+        /// Gets or sets an index into the object file's symbol string table, which holds the character representations of the symbol names.
         /// </summary>
-        public UInt32 NameIndex
+        public uint NameIndex
         {
             get; protected set;
         }
 
         /// <summary>
-        /// Gets the value of the associated symbol.
+        /// Gets or sets the value of the associated symbol.
         /// </summary>
-        public UInt64 Value
+        public ulong Value
         {
             get; protected set;
         }
@@ -30,13 +32,13 @@ namespace BinaryTools.Elf
         /// <summary>
         /// Gets the size associated with the symbol. For example, a data object's size is the number of bytes contained in the object.
         /// </summary>
-        public UInt64 Size
+        public ulong Size
         {
             get; internal set;
         }
 
         /// <summary>
-        /// Gets the symbol's binding.
+        /// Gets or sets the symbol's binding.
         /// </summary>
         public ElfSymbolBinding Binding
         {
@@ -44,7 +46,7 @@ namespace BinaryTools.Elf
         }
 
         /// <summary>
-        /// Gets the symbol's type.
+        /// Gets or sets the symbol's type.
         /// </summary>
         public ElfSymbolType Type
         {
@@ -52,7 +54,7 @@ namespace BinaryTools.Elf
         }
 
         /// <summary>
-        /// Gets the symbol's visibility.
+        /// Gets or sets the symbol's visibility.
         /// </summary>
         public ElfSymbolVisibility Visibility
         {
@@ -60,9 +62,9 @@ namespace BinaryTools.Elf
         }
 
         /// <summary>
-        /// Gets the relevant section header table index for which this symbol entry is defined.
+        /// Gets or sets the relevant section header table index for which this symbol entry is defined.
         /// </summary>
-        public UInt16 ShIndex
+        public ushort ShIndex
         {
             get; protected set;
         }

@@ -1,22 +1,24 @@
-﻿using System;
-using System.IO;
-
-namespace BinaryTools.Elf.Bit64
+﻿namespace BinaryTools.Elf.Bit64
 {
+    using System.IO;
+
+    /// <summary>
+    /// Represents an ELF relocation section.
+    /// </summary>
     internal sealed class ElfRelocationSection : Elf.ElfRelocationSection
     {
         /// <summary>
-        /// Initializes a new instance of <see cref="ElfRelocationSection"/> by extracting data from a <see cref="BinaryReader"/>.
+        /// Initializes a new instance of the <see cref="ElfRelocationSection"/> class by extracting data from a <see cref="BinaryReader"/>.
         /// </summary>
-        /// 
+        ///
         /// <param name="reader">
         /// The reader used to extract the data needed to initialize this type.
         /// </param>
-        /// 
+        ///
         /// <param name="position">
         /// The position within the <paramref name="reader"/> base stream at which the ELF section begins.
         /// </param>
-        internal ElfRelocationSection(BinaryReader reader, Int64 position)
+        internal ElfRelocationSection(BinaryReader reader, long position)
         {
             reader.BaseStream.Position = position;
 
@@ -51,11 +53,11 @@ namespace BinaryTools.Elf.Bit64
             EntrySize = reader.ReadUInt64();
 
             // Initialize all dynamic entries
-            for (UInt64 i = 0; i < Size / EntrySize; i++)
+            for (ulong i = 0; i < Size / EntrySize; i++)
             {
-                var entry = new ElfRelocationEntry(reader, (Int64)(Offset + i * EntrySize), Type == ElfSectionType.RelA);
+                var entry = new ElfRelocationEntry(reader, (long)(Offset + (i * EntrySize)), Type == ElfSectionType.RelA);
 
-                entries.Add(entry);
+                Entries.Add(entry);
             }
         }
     }

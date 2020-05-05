@@ -1,20 +1,22 @@
-﻿using System;
-
-namespace BinaryTools.Elf
+﻿namespace BinaryTools.Elf
 {
+    /// <summary>
+    /// Represents an ELF string table entry.
+    /// </summary>
     public class ElfStringTableEntry
     {
         /// <summary>
-        /// Gets the string value.
+        /// Gets or sets the string value.
         /// </summary>
-        public String Value
+        public string Value
         {
             get; set;
         }
+
         /// <summary>
-        /// Gets index (in number of bytes) from the start of the string table section to this string entry.
+        /// Gets or sets index (in number of bytes) from the start of the string table section to this string entry.
         /// </summary>
-        public UInt32 Index
+        public uint Index
         {
             get; set;
         }

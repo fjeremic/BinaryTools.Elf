@@ -1,9 +1,9 @@
-﻿using BinaryTools.Elf.Io;
-using System.IO;
-using Xunit;
-
-namespace BinaryTools.Elf.Tests
+﻿namespace BinaryTools.Elf.Tests
 {
+    using System.IO;
+    using BinaryTools.Elf.Io;
+    using Xunit;
+
     public class TestElfSegment
     {
         [Fact]
@@ -30,7 +30,6 @@ namespace BinaryTools.Elf.Tests
             Assert.Equal(ElfSegmentType.Dynamic, elfFile.Segments[4].Type);
             Assert.Equal(ElfSegmentType.Note, elfFile.Segments[5].Type);
         }
-
 
         [Fact]
         public void TestOffset()

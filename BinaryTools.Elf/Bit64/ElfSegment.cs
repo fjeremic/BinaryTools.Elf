@@ -1,25 +1,24 @@
-﻿using System;
-using System.IO;
-
-namespace BinaryTools.Elf.Bit64
+﻿namespace BinaryTools.Elf.Bit64
 {
+    using System.IO;
+
     /// <summary>
     /// Represents a 64-bit ELF segment.
     /// </summary>
     internal sealed class ElfSegment : Elf.ElfSegment
     {
         /// <summary>
-        /// Initializes a new instance of <see cref="ElfSegment"/> by extracting data from a <see cref="BinaryReader"/>.
+        /// Initializes a new instance of the <see cref="ElfSegment"/> class by extracting data from a <see cref="BinaryReader"/>.
         /// </summary>
-        /// 
+        ///
         /// <param name="reader">
         /// The reader used to extract the data needed to initialize this type.
         /// </param>
-        /// 
+        ///
         /// <param name="position">
         /// The position within the <paramref name="reader"/> base stream at which the ELF segment begins.
         /// </param>
-        internal ElfSegment(BinaryReader reader, Int64 position)
+        internal ElfSegment(BinaryReader reader, long position)
         {
             reader.BaseStream.Position = position;
 

@@ -1,7 +1,7 @@
-﻿using System.ComponentModel;
-
-namespace BinaryTools.Elf
+﻿namespace BinaryTools.Elf
 {
+    using System.ComponentModel;
+
     /// <summary>
     /// A symbol's visibility, although it may be specified in a relocatable object, defines how that symbol may be accessed once it has become part of an executable or shared object.
     /// </summary>

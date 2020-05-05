@@ -1,22 +1,24 @@
-﻿using System;
-using System.IO;
-
-namespace BinaryTools.Elf.Bit32
+﻿namespace BinaryTools.Elf.Bit32
 {
+    using System.IO;
+
+    /// <summary>
+    /// Represents an ELF string table.
+    /// </summary>
     internal sealed class ElfStringTable : Elf.ElfStringTable
     {
         /// <summary>
-        /// Initializes a new instance of <see cref="ElfStringTable"/> by extracting data from a <see cref="BinaryReader"/>.
+        /// Initializes a new instance of the <see cref="ElfStringTable"/> class by extracting data from a <see cref="BinaryReader"/>.
         /// </summary>
-        /// 
+        ///
         /// <param name="reader">
         /// The reader used to extract the data needed to initialize this type.
         /// </param>
-        /// 
+        ///
         /// <param name="position">
         /// The position within the <paramref name="reader"/> base stream at which the ELF section begins.
         /// </param>
-        internal ElfStringTable(BinaryReader reader, Int64 position)
+        internal ElfStringTable(BinaryReader reader, long position)
         {
             reader.BaseStream.Position = position;
 
@@ -51,20 +53,20 @@ namespace BinaryTools.Elf.Bit32
             EntrySize = reader.ReadUInt32();
 
             // Update position to start of the string table and skip the first byte as it is allways '\0'
-            reader.BaseStream.Position = (Int64)(Offset + 1);
+            reader.BaseStream.Position = (long)(Offset + 1);
 
-            Int64 startPosition = reader.BaseStream.Position;
+            long startPosition = reader.BaseStream.Position;
 
             // Parse all strings
-            while (reader.BaseStream.Position < startPosition + (Int64)Size)
+            while (reader.BaseStream.Position < startPosition + (long)Size)
             {
                 var entry = new ElfStringTableEntry
                 {
-                    Index = (UInt32)(reader.BaseStream.Position - startPosition) + 1,
+                    Index = (uint)(reader.BaseStream.Position - startPosition) + 1,
                     Value = reader.ReadELFString(),
                 };
 
-                entries.Add(entry);
+                Entries.Add(entry);
             }
         }
     }

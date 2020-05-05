@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace BinaryTools.Elf.Io
+﻿namespace BinaryTools.Elf.Io
 {
+    using System;
+
     /// <summary>
     /// Converts integral values to the native endianness of this computer architecture.
     /// </summary>
@@ -15,19 +15,19 @@ namespace BinaryTools.Elf.Io
         /// <summary>
         /// Converts a value from the specified endianness to the native endianness.
         /// </summary>
-        /// 
+        ///
         /// <param name="value">
         /// The value to convert.
         /// </param>
-        /// 
+        ///
         /// <param name="endianness">
         /// The endianness of <paramref name="value"/>.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// The value converted from the specified endianness to the native endianness (<see cref="NativeEndianness"/>).
         /// </returns>
-        public static UInt16 Convert(UInt16 value, Endianness endianness)
+        public static ushort Convert(ushort value, Endianness endianness)
         {
             if (endianness == NativeEndianness)
             {
@@ -37,7 +37,7 @@ namespace BinaryTools.Elf.Io
             {
                 unchecked
                 {
-                    return (UInt16)((value & 0x00FFU) << 8 |
+                    return (ushort)((value & 0x00FFU) << 8 |
                                      (value & 0xFF00U) >> 8);
                 }
             }
@@ -46,19 +46,19 @@ namespace BinaryTools.Elf.Io
         /// <summary>
         /// Converts a value from the specified endianness to the native endianness.
         /// </summary>
-        /// 
+        ///
         /// <param name="value">
         /// The value to convert.
         /// </param>
-        /// 
+        ///
         /// <param name="endianness">
         /// The endianness of <paramref name="value"/>.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// The value converted from the specified endianness to the native endianness (<see cref="NativeEndianness"/>).
         /// </returns>
-        public static UInt32 Convert(UInt32 value, Endianness endianness)
+        public static uint Convert(uint value, Endianness endianness)
         {
             if (endianness == NativeEndianness)
             {
@@ -79,19 +79,19 @@ namespace BinaryTools.Elf.Io
         /// <summary>
         /// Converts a value from the specified endianness to the native endianness.
         /// </summary>
-        /// 
+        ///
         /// <param name="value">
         /// The value to convert.
         /// </param>
-        /// 
+        ///
         /// <param name="endianness">
         /// The endianness of <paramref name="value"/>.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// The value converted from the specified endianness to the native endianness (<see cref="NativeEndianness"/>).
         /// </returns>
-        public static UInt64 Convert(UInt64 value, Endianness endianness)
+        public static ulong Convert(ulong value, Endianness endianness)
         {
             if (endianness == NativeEndianness)
             {
@@ -116,61 +116,61 @@ namespace BinaryTools.Elf.Io
         /// <summary>
         /// Converts a value from the specified endianness to the native endianness.
         /// </summary>
-        /// 
+        ///
         /// <param name="value">
         /// The value to convert.
         /// </param>
-        /// 
+        ///
         /// <param name="endianness">
         /// The endianness of <paramref name="value"/>.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// The value converted from the specified endianness to the native endianness (<see cref="NativeEndianness"/>).
         /// </returns>
-        public static Int16 Convert(Int16 value, Endianness endianness)
+        public static short Convert(short value, Endianness endianness)
         {
-            return (Int16)Convert((UInt16)value, endianness);
+            return (short)Convert((ushort)value, endianness);
         }
 
         /// <summary>
         /// Converts a value from the specified endianness to the native endianness.
         /// </summary>
-        /// 
+        ///
         /// <param name="value">
         /// The value to convert.
         /// </param>
-        /// 
+        ///
         /// <param name="endianness">
         /// The endianness of <paramref name="value"/>.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// The value converted from the specified endianness to the native endianness (<see cref="NativeEndianness"/>).
         /// </returns>
-        public static Int32 Convert(Int32 value, Endianness endianness)
+        public static int Convert(int value, Endianness endianness)
         {
-            return (Int32)Convert((UInt32)value, endianness);
+            return (int)Convert((uint)value, endianness);
         }
 
         /// <summary>
         /// Converts a value from the specified endianness to the native endianness.
         /// </summary>
-        /// 
+        ///
         /// <param name="value">
         /// The value to convert.
         /// </param>
-        /// 
+        ///
         /// <param name="endianness">
         /// The endianness of <paramref name="value"/>.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// The value converted from the specified endianness to the native endianness (<see cref="NativeEndianness"/>).
         /// </returns>
-        public static Int64 Convert(Int64 value, Endianness endianness)
+        public static long Convert(long value, Endianness endianness)
         {
-            return (Int64)Convert((UInt64)value, endianness);
+            return (long)Convert((ulong)value, endianness);
         }
     }
 }

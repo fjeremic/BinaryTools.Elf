@@ -6,12 +6,12 @@
     public enum ElfSectionType : uint
     {
         /// <summary>
-        /// This value marks the section header as inactive; it does not have an associated section. Other members of the section header have undefined values. 
+        /// This value marks the section header as inactive; it does not have an associated section. Other members of the section header have undefined values.
         /// </summary>
         Null = 0,
 
         /// <summary>
-        /// The section holds information defined by the program, whose format and meaning are determined solely by the program. 
+        /// The section holds information defined by the program, whose format and meaning are determined solely by the program.
         /// </summary>
         ProgBits = 1,
 
@@ -46,7 +46,7 @@
         Note = 7,
 
         /// <summary>
-        /// A section of this type occupies no space in the file but otherwise resembles SHT_PROGBITS. Although this section contains no bytes, the sh_offset member contains the conceptual file offset. 
+        /// A section of this type occupies no space in the file but otherwise resembles SHT_PROGBITS. Although this section contains no bytes, the sh_offset member contains the conceptual file offset.
         /// </summary>
         NoBits = 8,
 

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BinaryTools.Elf
+﻿namespace BinaryTools.Elf
 {
     /// <summary>
     /// Represents an ELF section.
@@ -10,61 +8,61 @@ namespace BinaryTools.Elf
         /// <summary>
         /// Gets the name of this section.
         /// </summary>
-        public String Name
+        public string Name
         {
             get; internal set;
         }
 
         /// <summary>
-        /// Gets the offset in the string table of the name of this section.
+        /// Gets or sets the offset in the string table of the name of this section.
         /// </summary>
-        public UInt32 NameOffset
+        public uint NameOffset
         {
             get; protected set;
         }
 
         /// <summary>
-        /// Gets the size in number of bytes of this section.
+        /// Gets or sets the size in number of bytes of this section.
         /// </summary>
-        public UInt64 Size
+        public ulong Size
         {
             get; protected set;
         }
 
         /// <summary>
-        /// Gets the size of the fixed-sized entries of this section.
+        /// Gets or sets the size of the fixed-sized entries of this section.
         /// </summary>
-        public UInt64 EntrySize
+        public ulong EntrySize
         {
             get; protected set;
         }
 
         /// <summary>
-        /// Gets the offset from the beginning of the ELF file the first byte in this section.
+        /// Gets or sets the offset from the beginning of the ELF file the first byte in this section.
         /// </summary>
-        public UInt64 Offset
+        public ulong Offset
         {
             get; protected set;
         }
 
         /// <summary>
-        /// Gets the address of this section.
+        /// Gets or sets the address of this section.
         /// </summary>
-        public UInt64 Address
+        public ulong Address
         {
             get; protected set;
         }
 
         /// <summary>
-        /// Gets the address alignment of this section.
+        /// Gets or sets the address alignment of this section.
         /// </summary>
-        public UInt64 Alignment
+        public ulong Alignment
         {
             get; protected set;
         }
 
         /// <summary>
-        /// Gets the type of this section.
+        /// Gets or sets the type of this section.
         /// </summary>
         public ElfSectionType Type
         {
@@ -72,7 +70,7 @@ namespace BinaryTools.Elf
         }
 
         /// <summary>
-        /// Gets the flags of this section.
+        /// Gets or sets the flags of this section.
         /// </summary>
         public ElfSectionFlags Flags
         {
@@ -80,17 +78,17 @@ namespace BinaryTools.Elf
         }
 
         /// <summary>
-        /// Gets a section header table index link whose interpretation depends on the section type.
+        /// Gets or sets a section header table index link whose interpretation depends on the section type.
         /// </summary>
-        public UInt32 Link
+        public uint Link
         {
             get; protected set;
         }
 
         /// <summary>
-        /// Gets the extra information whose interpretation depends on the section type.
+        /// Gets or sets the extra information whose interpretation depends on the section type.
         /// </summary>
-        public UInt32 Info
+        public uint Info
         {
             get; protected set;
         }

@@ -1,9 +1,8 @@
-﻿using System;
-using System.IO;
-using System.Text;
-
-namespace BinaryTools.Elf
+﻿namespace BinaryTools.Elf
 {
+    using System.IO;
+    using System.Text;
+
     /// <summary>
     /// An extension class providing <see cref="BinaryReader"/> utility methods for extracting ELF specific data.
     /// </summary>
@@ -12,28 +11,29 @@ namespace BinaryTools.Elf
         /// <summary>
         /// Reads a string value from the binary reader.
         /// </summary>
-        /// 
+        ///
         /// <param name="reader">
         /// The binary reader used to extract data.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// The string value.
         /// </returns>
-        /// 
+        ///
         /// <remarks>
         /// The string is defined as a null terminated sequence of character values.
         /// </remarks>
-        public static String ReadELFString(this BinaryReader reader)
+        public static string ReadELFString(this BinaryReader reader)
         {
             StringBuilder builder = new StringBuilder();
 
-            Char c = (Char)reader.ReadByte();
+            char c = (char)reader.ReadByte();
 
             // Read the entire null terminated string
             while (c != 0)
             {
-                builder.Append(c); c = (Char)reader.ReadByte();
+                builder.Append(c);
+                c = (char)reader.ReadByte();
             }
 
             return builder.ToString();
@@ -42,35 +42,35 @@ namespace BinaryTools.Elf
         /// <summary>
         /// Reads a string value from an index into the ELF string table section.
         /// </summary>
-        /// 
+        ///
         /// <param name="reader">
         /// The binary reader used to extract data.
         /// </param>
-        /// 
+        ///
         /// <param name="section">
         /// The ELF string table section.
         /// </param>
-        /// 
+        ///
         /// <param name="offset">
         /// The offset of the string in the ELF string table section.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// The string value extracted from the ELF string table section at the specified offset.
         /// </returns>
-        /// 
+        ///
         /// <remarks>
         /// The string is defined as a null terminated sequence of character values.
         /// </remarks>
-        public static String ReadELFString(this BinaryReader reader, ElfSection section, UInt64 offset)
+        public static string ReadELFString(this BinaryReader reader, ElfSection section, ulong offset)
         {
-            String value = String.Empty;
+            string value = string.Empty;
 
             if (section != null && offset < section.Size)
             {
-                Int64 savedPosition = reader.BaseStream.Position;
+                long savedPosition = reader.BaseStream.Position;
 
-                reader.BaseStream.Position = (Int64)(section.Offset + offset);
+                reader.BaseStream.Position = (long)(section.Offset + offset);
 
                 // Read the entire null terminated string
                 value = reader.ReadELFString();

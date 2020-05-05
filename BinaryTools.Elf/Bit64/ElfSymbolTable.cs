@@ -1,22 +1,24 @@
-﻿using System;
-using System.IO;
-
-namespace BinaryTools.Elf.Bit64
+﻿namespace BinaryTools.Elf.Bit64
 {
+    using System.IO;
+
+    /// <summary>
+    /// Represents an ELF symbol table.
+    /// </summary>
     internal sealed class ElfSymbolTable : Elf.ElfSymbolTable
     {
         /// <summary>
-        /// Initializes a new instance of <see cref="ElfSymbolTable"/> by extracting data from a <see cref="BinaryReader"/>.
+        /// Initializes a new instance of the <see cref="ElfSymbolTable"/> class by extracting data from a <see cref="BinaryReader"/>.
         /// </summary>
-        /// 
+        ///
         /// <param name="reader">
         /// The reader used to extract the data needed to initialize this type.
         /// </param>
-        /// 
+        ///
         /// <param name="position">
         /// The position within the <paramref name="reader"/> base stream at which the ELF section begins.
         /// </param>
-        internal ElfSymbolTable(BinaryReader reader, Int64 position)
+        internal ElfSymbolTable(BinaryReader reader, long position)
         {
             reader.BaseStream.Position = position;
 
@@ -51,11 +53,11 @@ namespace BinaryTools.Elf.Bit64
             EntrySize = reader.ReadUInt64();
 
             // Initialize all dynamic entries
-            for (UInt64 i = 0; i < Size / EntrySize; i++)
+            for (ulong i = 0; i < Size / EntrySize; i++)
             {
-                var entry = new ElfSymbolTableEntry(reader, (Int64)(Offset + i * EntrySize));
+                var entry = new ElfSymbolTableEntry(reader, (long)(Offset + (i * EntrySize)));
 
-                entries.Add(entry);
+                Entries.Add(entry);
             }
         }
     }

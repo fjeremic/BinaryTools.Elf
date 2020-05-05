@@ -1,9 +1,9 @@
-﻿using BinaryTools.Elf.Io;
-using System.IO;
-using Xunit;
-
-namespace BinaryTools.Elf.Tests
+﻿namespace BinaryTools.Elf.Tests
 {
+    using System.IO;
+    using BinaryTools.Elf.Io;
+    using Xunit;
+
     public class TestElfSymbolTable
     {
         [Fact]
@@ -29,7 +29,7 @@ namespace BinaryTools.Elf.Tests
             Assert.IsAssignableFrom<ElfSymbolTable>(elfFile.Sections[5]);
 
             ElfSymbolTable symbolTable = elfFile.Sections[5] as ElfSymbolTable;
-            Assert.Equal("", symbolTable[0].Name);
+            Assert.Equal(string.Empty, symbolTable[0].Name);
             Assert.Equal("__uflow", symbolTable[1].Name);
             Assert.Equal("getenv", symbolTable[2].Name);
             Assert.Equal("free", symbolTable[3].Name);

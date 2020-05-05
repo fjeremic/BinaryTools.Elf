@@ -1,15 +1,38 @@
-﻿using BinaryTools.Elf.Io;
-using System;
-using System.IO;
-using System.Text;
-
-namespace BinaryTools.Elf
+﻿namespace BinaryTools.Elf
 {
+    using System;
+    using System.IO;
+    using System.Text;
+    using BinaryTools.Elf.Io;
+
     /// <summary>
     /// Represents an Executable Linkable Format (ELF) file.
     /// </summary>
     public sealed class ElfFile
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ElfFile"/> class.
+        /// </summary>
+        ///
+        /// <param name="header">
+        /// The ELF file header.
+        /// </param>
+        ///
+        /// <param name="segments">
+        /// The program header table.
+        /// </param>
+        ///
+        /// <param name="sections">
+        /// The section header table.
+        /// </param>
+        internal ElfFile(ElfHeader header, ElfProgramHeaderTable segments, ElfSectionHeaderTable sections)
+        {
+            Header = header;
+
+            Segments = segments;
+            Sections = sections;
+        }
+
         /// <summary>
         /// Gets the ELF header which contains metadata about segments and sections of the ELF file.
         /// </summary>
@@ -35,40 +58,17 @@ namespace BinaryTools.Elf
         }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="ElfFile"/>.
-        /// </summary>
-        /// 
-        /// <param name="header">
-        /// The ELF file header.
-        /// </param>
-        /// 
-        /// <param name="segments">
-        /// The program header table.
-        /// </param>
-        /// 
-        /// <param name="sections">
-        /// The section header table.
-        /// </param>
-        internal ElfFile(ElfHeader header, ElfProgramHeaderTable segments, ElfSectionHeaderTable sections)
-        {
-            Header = header;
-
-            Segments = segments;
-            Sections = sections;
-        }
-
-        /// <summary>
         /// Reads an ELF file from a binary reader.
         /// </summary>
-        /// 
+        ///
         /// <param name="reader">
         /// The reader used to extract the data needed to parse the ELF file.
         /// </param>
-        /// 
+        ///
         /// <returns>
         /// The ELF file parsed from the binary reader.
         /// </returns>
-        /// 
+        ///
         /// <exception cref="FileFormatException">
         /// <paramref name="reader"/> base stream does not represent a valid ELF file.
         /// </exception>
@@ -76,26 +76,26 @@ namespace BinaryTools.Elf
         {
             try
             {
-                Int64 savedPosition = reader.BaseStream.Position;
+                long savedPosition = reader.BaseStream.Position;
 
-                Byte magic0 = reader.ReadByte();
-                Byte magic1 = reader.ReadByte();
-                Byte magic2 = reader.ReadByte();
-                Byte magic3 = reader.ReadByte();
+                byte magic0 = reader.ReadByte();
+                byte magic1 = reader.ReadByte();
+                byte magic2 = reader.ReadByte();
+                byte magic3 = reader.ReadByte();
 
                 if (magic0 != ElfHeader.ELFMAG0 || magic1 != ElfHeader.ELFMAG1 || magic2 != ElfHeader.ELFMAG2 || magic3 != ElfHeader.ELFMAG3)
                 {
                     throw new FileFormatException($"Invalid ELF magic bytes: 0x{magic0,0:X2} 0x{magic1,0:X2} 0x{magic2,0:X2} 0x{magic3,0:X2}");
                 }
 
-                Byte @class = reader.ReadByte();
+                byte @class = reader.ReadByte();
 
                 if (@class != ElfHeader.ELFCLASS32 && @class != ElfHeader.ELFCLASS64)
                 {
                     throw new FileFormatException($"Invalid ELF class: 0x{@class,0:X2}");
                 }
 
-                Byte endianness = reader.ReadByte();
+                byte endianness = reader.ReadByte();
 
                 if (endianness != ElfHeader.ELFDATA2LSB && endianness != ElfHeader.ELFDATA2MSB)
                 {
@@ -112,14 +112,14 @@ namespace BinaryTools.Elf
                     case ElfHeader.ELFCLASS32:
                     {
                         header = new Bit32.ElfHeader(reader, savedPosition);
+                        break;
                     }
-                    break;
 
                     case ElfHeader.ELFCLASS64:
                     {
                         header = new Bit64.ElfHeader(reader, savedPosition);
+                        break;
                     }
-                    break;
 
                     default:
                     {
