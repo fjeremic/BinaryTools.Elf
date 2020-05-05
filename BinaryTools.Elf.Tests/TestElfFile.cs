@@ -1,10 +1,10 @@
-using BinaryTools.Elf.Io;
-using System;
-using System.IO;
-using Xunit;
-
 namespace BinaryTools.Elf.Tests
 {
+    using System;
+    using System.IO;
+    using BinaryTools.Elf.Io;
+    using Xunit;
+
     public class TestElfFile
     {
         [Fact]
@@ -21,8 +21,8 @@ namespace BinaryTools.Elf.Tests
             var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
             stream.Close();
 
-            void action() => new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
-            Assert.Throws<ArgumentException>(action);
+            void Action() => new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
+            Assert.Throws<ArgumentException>(Action);
         }
 
         [Fact]
@@ -38,9 +38,9 @@ namespace BinaryTools.Elf.Tests
         {
             var stream = new FileStream("Binaries/invalidmagicbytes", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
-            void action() => ElfFile.ReadElfFile(reader);
+            void Action() => ElfFile.ReadElfFile(reader);
 
-            Assert.Throws<FileFormatException>(action);
+            Assert.Throws<FileFormatException>(Action);
         }
 
         [Fact]
@@ -48,9 +48,9 @@ namespace BinaryTools.Elf.Tests
         {
             var stream = new FileStream("Binaries/invalidclass", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
-            void action() => ElfFile.ReadElfFile(reader);
+            void Action() => ElfFile.ReadElfFile(reader);
 
-            Assert.Throws<FileFormatException>(action);
+            Assert.Throws<FileFormatException>(Action);
         }
 
         [Fact]
@@ -58,9 +58,9 @@ namespace BinaryTools.Elf.Tests
         {
             var stream = new FileStream("Binaries/invalidendianness", FileMode.Open, FileAccess.Read);
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
-            void action() => ElfFile.ReadElfFile(reader);
+            void Action() => ElfFile.ReadElfFile(reader);
 
-            Assert.Throws<FileFormatException>(action);
+            Assert.Throws<FileFormatException>(Action);
         }
     }
 }

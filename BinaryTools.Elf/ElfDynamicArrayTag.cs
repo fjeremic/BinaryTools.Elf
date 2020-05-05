@@ -1,14 +1,14 @@
-﻿using System.ComponentModel;
-
-namespace BinaryTools.Elf
+﻿namespace BinaryTools.Elf
 {
+    using System.ComponentModel;
+
     /// <summary>
     /// Enumerates the dynamic section entry tags which are used to interpret the entry values.
     /// </summary>
     public enum ElfDynamicArrayTag : long
     {
         /// <summary>
-        /// An entry with a DT_NULL tag marks the end of the _DYNAMIC array. 
+        /// An entry with a DT_NULL tag marks the end of the _DYNAMIC array.
         /// </summary>
         [Description("NULL")]
         Null,
@@ -32,13 +32,13 @@ namespace BinaryTools.Elf
         PltGot,
 
         /// <summary>
-        /// This element holds the address of the symbol hash table. This hash table refers to the symbol table referenced by the DT_SYMTAB element. 
+        /// This element holds the address of the symbol hash table. This hash table refers to the symbol table referenced by the DT_SYMTAB element.
         /// </summary>
         [Description("HASH")]
         Hash,
 
         /// <summary>
-        /// This element holds the address of the string table. Symbol names, library names, and other strings reside in this table. 
+        /// This element holds the address of the string table. Symbol names, library names, and other strings reside in this table.
         /// </summary>
         [Description("STRTAB")]
         StrTab,

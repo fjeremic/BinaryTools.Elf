@@ -1,10 +1,9 @@
-﻿using BinaryTools.Elf.Io;
-using System;
-using System.IO;
-using Xunit;
-
-namespace BinaryTools.Elf.Tests
+﻿namespace BinaryTools.Elf.Tests
 {
+    using System.IO;
+    using BinaryTools.Elf.Io;
+    using Xunit;
+
     public class TestElfDynamicSection
     {
         [Fact]
@@ -76,7 +75,7 @@ namespace BinaryTools.Elf.Tests
 
             ElfDynamicSection dynamicSection = elfFile.Sections[22] as ElfDynamicSection;
             Assert.Equal("libc.so.6", dynamicSection[0].Name);
-            Assert.Equal(String.Empty, dynamicSection[1].Name);
+            Assert.Equal(string.Empty, dynamicSection[1].Name);
         }
     }
 }

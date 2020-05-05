@@ -1,9 +1,9 @@
-﻿using BinaryTools.Elf.Io;
-using System.IO;
-using Xunit;
-
-namespace BinaryTools.Elf.Tests
+﻿namespace BinaryTools.Elf.Tests
 {
+    using System.IO;
+    using BinaryTools.Elf.Io;
+    using Xunit;
+
     public class TestElfStringTable
     {
         [Fact]

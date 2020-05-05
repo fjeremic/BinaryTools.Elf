@@ -1,7 +1,7 @@
-﻿using System.ComponentModel;
-
-namespace BinaryTools.Elf
+﻿namespace BinaryTools.Elf
 {
+    using System.ComponentModel;
+
     /// <summary>
     /// Enumerates the object file type.
     /// </summary>

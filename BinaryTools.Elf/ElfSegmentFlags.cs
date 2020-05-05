@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace BinaryTools.Elf
+﻿namespace BinaryTools.Elf
 {
+    using System;
+
     /// <summary>
     /// Enumerates the ELF section's contents and semantics.
     /// </summary>

@@ -1,7 +1,7 @@
-﻿using System.ComponentModel;
-
-namespace BinaryTools.Elf
+﻿namespace BinaryTools.Elf
 {
+    using System.ComponentModel;
+
     /// <summary>
     /// A symbol's binding determines the linkage visibility and behavior.
     /// </summary>

@@ -1,9 +1,9 @@
-﻿using System;
-using System.ComponentModel;
-using System.Reflection;
-
-namespace BinaryTools.Elf
+﻿namespace BinaryTools.Elf
 {
+    using System;
+    using System.ComponentModel;
+    using System.Reflection;
+
     /// <summary>
     /// An extension class providing utility methods for getting <see cref="DescriptionAttribute"/> attribute strings from enum values.
     /// </summary>
@@ -12,19 +12,20 @@ namespace BinaryTools.Elf
         /// <summary>
         /// Gets the <see cref="DescriptionAttribute"/> text from an enum.
         /// </summary>
-        /// 
+        ///
         /// <typeparam name="T">
-        /// The enum type
+        /// The enum type.
         /// </typeparam>
-        /// 
+        ///
         /// <param name="enumerationValue">
-        /// The enum value for which to retireve the description from.
+        /// The enum value for which to retrieve the description from.
         /// </param>
-        /// 
+        ///
         /// <returns>
-        /// The desciption string if it exists; default result of <c>ToString</c> otherwise;
+        /// The description string if it exists; default result of <c>ToString</c> otherwise.
         /// </returns>
-        public static string GetDescription<T>(this T enumerationValue) where T : struct
+        public static string GetDescription<T>(this T enumerationValue)
+            where T : struct
         {
             Type type = enumerationValue.GetType();
 
@@ -37,7 +38,7 @@ namespace BinaryTools.Elf
 
             if (memberInfo != null && memberInfo.Length > 0)
             {
-                Object[] attributes = memberInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
+                object[] attributes = memberInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
 
                 if (attributes != null && attributes.Length > 0)
                 {

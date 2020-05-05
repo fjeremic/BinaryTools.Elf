@@ -1,7 +1,7 @@
-﻿using System.ComponentModel;
-
-namespace BinaryTools.Elf
+﻿namespace BinaryTools.Elf
 {
+    using System.ComponentModel;
+
     /// <summary>
     /// A symbol's type provides a general classification for the associated entity.
     /// </summary>

@@ -1,25 +1,24 @@
-﻿using System;
-using System.IO;
-
-namespace BinaryTools.Elf.Bit32
+﻿namespace BinaryTools.Elf.Bit32
 {
+    using System.IO;
+
     /// <summary>
     /// Represents a 32-bit ELF section.
     /// </summary>
     internal sealed class ElfSection : Elf.ElfSection
     {
         /// <summary>
-        /// Initializes a new instance of <see cref="ElfSection"/> by extracting data from a <see cref="BinaryReader"/>.
+        /// Initializes a new instance of the <see cref="ElfSection"/> class by extracting data from a <see cref="BinaryReader"/>.
         /// </summary>
-        /// 
+        ///
         /// <param name="reader">
         /// The reader used to extract the data needed to initialize this type.
         /// </param>
-        /// 
+        ///
         /// <param name="position">
         /// The position within the <paramref name="reader"/> base stream at which the ELF section begins.
         /// </param>
-        internal ElfSection(BinaryReader reader, Int64 position)
+        internal ElfSection(BinaryReader reader, long position)
         {
             reader.BaseStream.Position = position;
 

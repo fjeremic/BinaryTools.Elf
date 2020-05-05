@@ -1,9 +1,9 @@
-﻿using BinaryTools.Elf.Io;
-using System.IO;
-using Xunit;
-
-namespace BinaryTools.Elf.Tests
+﻿namespace BinaryTools.Elf.Tests
 {
+    using System.IO;
+    using BinaryTools.Elf.Io;
+    using Xunit;
+
     public class TestElfSection
     {
         [Fact]
@@ -23,7 +23,7 @@ namespace BinaryTools.Elf.Tests
             var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
             ElfFile elfFile = ElfFile.ReadElfFile(reader);
 
-            Assert.Equal("", elfFile.Sections[0].Name);
+            Assert.Equal(string.Empty, elfFile.Sections[0].Name);
             Assert.Equal(".dynsym", elfFile.Sections[5].Name);
             Assert.Equal(".plt.got", elfFile.Sections[13].Name);
             Assert.Equal(".dynamic", elfFile.Sections[22].Name);

@@ -1,7 +1,7 @@
-﻿using System.ComponentModel;
-
-namespace BinaryTools.Elf
+﻿namespace BinaryTools.Elf
 {
+    using System.ComponentModel;
+
     /// <summary>
     /// Enumerates the required architecture for an individual ELF file.
     /// </summary>
@@ -14,7 +14,7 @@ namespace BinaryTools.Elf
         None = 0,
 
         /// <summary>
-        /// AT&T WE 32100
+        /// ATT WE 32100
         /// </summary>
         [Description("AT&T WE 32100")]
         M32 = 1,

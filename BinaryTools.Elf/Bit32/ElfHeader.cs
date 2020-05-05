@@ -1,25 +1,24 @@
-﻿using System;
-using System.IO;
-
-namespace BinaryTools.Elf.Bit32
+﻿namespace BinaryTools.Elf.Bit32
 {
+    using System.IO;
+
     /// <summary>
     /// Represents a 32-bit ELF header.
     /// </summary>
     internal sealed class ElfHeader : BinaryTools.Elf.ElfHeader
     {
         /// <summary>
-        /// Initializes a new instance of <see cref="ElfHeader"/> by extracting data from a <see cref="BinaryReader"/>.
+        /// Initializes a new instance of the <see cref="ElfHeader"/> class by extracting data from a <see cref="BinaryReader"/>.
         /// </summary>
-        /// 
+        ///
         /// <param name="reader">
         /// The reader used to extract the data needed to initialize this type.
         /// </param>
-        /// 
+        ///
         /// <param name="position">
         /// The position within the <paramref name="reader"/> base stream at which the ELF header begins.
         /// </param>
-        internal ElfHeader(BinaryReader reader, Int64 position)
+        internal ElfHeader(BinaryReader reader, long position)
         {
             reader.BaseStream.Position = position;
 
