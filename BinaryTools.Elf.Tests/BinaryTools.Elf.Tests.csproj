@@ -32,6 +32,9 @@
     <None Update="Binaries\base64">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Binaries\blinky">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Binaries\calendar">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

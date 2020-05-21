@@ -49,6 +49,7 @@
                             }
 
                             case ElfSectionType.DynSym:
+                            case ElfSectionType.SymTab:
                             {
                                 section = new Bit32.ElfSymbolTable(reader, (long)(header.SectionHeaderOffset + (ulong)(i * header.SectionHeaderSize)));
                                 break;
@@ -84,6 +85,7 @@
                             }
 
                             case ElfSectionType.DynSym:
+                            case ElfSectionType.SymTab:
                             {
                                 section = new Bit64.ElfSymbolTable(reader, (long)(header.SectionHeaderOffset + (ulong)(i * header.SectionHeaderSize)));
                                 break;
@@ -153,21 +155,28 @@
             }
 
             var symTab = sections.OfType<ElfSymbolTable>().FirstOrDefault();
-            var dynStr = sections.OfType<ElfStringTable>().Where(s => s.Name == ".dynstr").FirstOrDefault();
 
-            // Parse all relocation entries symbols now that we have all sections initalized
-            foreach (ElfSymbolTableEntry entry in symTab)
+            if (symTab != null)
             {
-                entry.Name = reader.ReadELFString(dynStr, entry.NameIndex);
-            }
+                var strTab = sections[(int)symTab.Link];
 
-            // Parse all relocation entries symbols now that we have all sections initalized
-            foreach (ElfRelocationSection relocationSection in sections.OfType<ElfRelocationSection>())
-            {
-                foreach (ElfRelocationEntry entry in relocationSection)
+                if (strTab is ElfStringTable)
                 {
-                    entry.Symbol = symTab[entry.SymbolIndex].Name;
-                    entry.SymbolValue = symTab[entry.SymbolIndex].Value;
+                    // Parse all relocation entries symbols now that we have all sections initalized
+                    foreach (ElfSymbolTableEntry entry in symTab)
+                    {
+                        entry.Name = reader.ReadELFString(strTab, entry.NameIndex);
+                    }
+
+                    // Parse all relocation entries symbols now that we have all sections initalized
+                    foreach (ElfRelocationSection relocationSection in sections.OfType<ElfRelocationSection>())
+                    {
+                        foreach (ElfRelocationEntry entry in relocationSection)
+                        {
+                            entry.Symbol = symTab[entry.SymbolIndex].Name;
+                            entry.SymbolValue = symTab[entry.SymbolIndex].Value;
+                        }
+                    }
                 }
             }
         }

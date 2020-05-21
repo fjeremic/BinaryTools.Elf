@@ -46,6 +46,22 @@
         }
 
         [Fact]
+        public void TestNameWithoutPresenceOfDynSym()
+        {
+            var stream = new FileStream("Binaries/blinky", FileMode.Open, FileAccess.Read);
+            var reader = new EndianBinaryReader(stream, EndianBitConverter.NativeEndianness);
+            ElfFile elfFile = ElfFile.ReadElfFile(reader);
+
+            Assert.IsAssignableFrom<ElfSymbolTable>(elfFile.Sections[39]);
+
+            ElfSymbolTable symbolTable = elfFile.Sections[39] as ElfSymbolTable;
+            Assert.Equal("numb.8344", symbolTable[44].Name);
+            Assert.Equal("nrf_gpio_pin_port_decode", symbolTable[82].Name);
+            Assert.Equal("HardFault_Handler", symbolTable[124].Name);
+            Assert.Equal("__bss_load_end__", symbolTable[266].Name);
+        }
+
+        [Fact]
         public void TestNameIndex()
         {
             var stream = new FileStream("Binaries/base32", FileMode.Open, FileAccess.Read);
