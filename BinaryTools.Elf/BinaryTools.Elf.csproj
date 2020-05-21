@@ -9,7 +9,7 @@
     <RepositoryUrl>https://github.com/fjeremic/BinaryTools.Elf</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>ELF</PackageTags>
-    <Version>0.2.0</Version>
+    <Version>0.3.0</Version>
     <PackageReleaseNotes>Release notes:
 https://github.com/fjeremic/BinaryTools.Elf/releases</PackageReleaseNotes>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
